@@ -1,0 +1,38 @@
+{
+  "course": "lua-intermediate",
+  "language": "lua",
+  "language_id": 64,
+  "entrypoint": "main.lua",
+  "version": 1,
+  "content_hash": "654c6fb471bab78b",
+  "lessons": [
+    {
+      "slug": "metatables",
+      "tests_hash": "7afedf96d5cc"
+    },
+    {
+      "slug": "oop",
+      "tests_hash": "f678e4c15cc0"
+    },
+    {
+      "slug": "coroutines",
+      "tests_hash": "35d5bbf11750"
+    },
+    {
+      "slug": "errors",
+      "tests_hash": "924b34ec86c5"
+    },
+    {
+      "slug": "modules",
+      "tests_hash": "5c6e5546ca11"
+    },
+    {
+      "slug": "iterators",
+      "tests_hash": "b98535ca3a2b"
+    },
+    {
+      "slug": "io-files",
+      "tests_hash": "c85c81bb109e"
+    }
+  ]
+}
