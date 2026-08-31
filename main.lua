@@ -1,15 +1,20 @@
-local function squares()
-	return coroutine.wrap(function()
-		local i = 1
-		while true do
-			coroutine.yield(i * i)
-			i = i + 1
-		end
-	end)
+local function validateAge(s)
+	local age = tonumber(s)
+	if not age then
+		error("not a number")
+	elseif age < 0 then
+		error("negative")
+	end
+
+	return age
 end
 
-local n = tonumber(io.read())
-local co = squares()
-for _ = 1, n do
-	print(co())
+local line = io.read()
+local ok, result = pcall(validateAge, line)
+
+if ok then
+	print("age: " .. result)
+else
+	local err_message = string.match(result, ":%d+: (.*)")
+	print("error: " .. err_message)
 end
