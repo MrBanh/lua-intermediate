@@ -1,22 +1,14 @@
-local M = {}
-
-function M.square(n)
-	return n * n
-end
-
-function M.cube(n)
-	return n * n * n
-end
-
-function M.sumTo(n)
-	local sum = 0
-	for i = 1, n do
-		sum = sum + i
-	end
-	return sum
+local function evens(maxN)
+	local n = 2
+	return coroutine.wrap(function()
+		while n <= maxN do
+			coroutine.yield(n)
+			n = n + 2
+		end
+	end)
 end
 
 local n = tonumber(io.read())
-print(M.square(n))
-print(M.cube(n))
-print(M.sumTo(n))
+for v in evens(n) do
+	print(v)
+end
