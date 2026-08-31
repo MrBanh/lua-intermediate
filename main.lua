@@ -1,30 +1,32 @@
----@class (exact) Point
----@field x number
----@field y number
+local Account = {}
+Account.__index = Account
 
-local mt = {
-	---@param a Point
-	---@param b Point
-	---@return Point
-	__add = function(a, b)
-		return setmetatable({
-			x = a.x + b.x,
-			y = a.y + b.y,
-		}, getmetatable(a))
-	end,
-
-	---@param v Point
-	__tostring = function(v)
-		return string.format("(%d,%d)", v.x, v.y)
-	end,
-}
-
-local function readvec()
-	local line = io.read()
-	local x, y = line:match("(-?%d+) (-?%d+)")
-	return setmetatable({ x = tonumber(x), y = tonumber(y) }, mt)
+function Account.new(initial)
+	return setmetatable({ bal = initial }, Account)
 end
 
-local v1 = readvec()
-local v2 = readvec()
-print(v1 + v2)
+function Account:deposit(amount)
+	self.bal = self.bal + amount
+end
+
+function Account:withdraw(amount)
+	self.bal = self.bal + amount
+end
+
+function Account:balance()
+	return self.bal
+end
+
+local initial = tonumber(io.read())
+local acc = Account.new(initial)
+
+for _ = 1, 3 do
+	local amount = tonumber(io.read())
+	if amount >= 0 then
+		acc:deposit(amount)
+	else
+		acc:withdraw(amount)
+	end
+end
+
+print(acc:balance())
